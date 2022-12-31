@@ -1,0 +1,36 @@
+server:
+  port: 8080
+  shutdown: graceful
+  tomcat:
+    connection-timeout: 2s
+    keep-alive-timeout: 15s
+    threads:
+      max: 50
+      min-spare: 5
+
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:postgresql://localhost:5432/postgres
+    hikari:
+      minimum-idle: 15
+      maximum-pool-size: 20
+  application:
+    name: inventory
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    prometheus:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+    metrics:
+      enabled: true
